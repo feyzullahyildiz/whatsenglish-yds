@@ -10,10 +10,10 @@ export default async function Home() {
   const days = await prisma.day.findMany({});
 
   return (
-    <div className="container mx-auto grid grid-cols-7">
+    <div className="container mx-auto grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-4 lg:grid-cols-7">
       {days.map((day) => (
         <Link key={day.name} href={`/day/${day.name}`}>
-          <Card className="m-2 flex size-32 items-center justify-center">
+          <Card className="flex h-32 min-w-32 items-center justify-center">
             <CardContent className="flex flex-col items-center">
               <div>Gün {day.name}</div>
 

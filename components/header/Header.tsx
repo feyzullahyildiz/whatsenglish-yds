@@ -11,15 +11,17 @@ import { SignOut } from "./SignOut";
 export const Header = () => {
   const session = useSession();
   return (
-    <div className="z-10 flex h-16 justify-between bg-stone-600 p-4">
-      <Link href="/">Ana Sayfa</Link>
-      {session.status === "unauthenticated" ? (
-        <SignIn />
-      ) : (
-        <>
-          <SignOut />
-        </>
-      )}
-    </div>
+    <nav className="bg-sidebar-accent z-10">
+      <div className="container mx-auto flex h-16 items-center justify-between py-4">
+        <Link href="/">Ana Sayfa</Link>
+        {session.status === "unauthenticated" ? (
+          <SignIn />
+        ) : (
+          <>
+            <SignOut />
+          </>
+        )}
+      </div>
+    </nav>
   );
 };

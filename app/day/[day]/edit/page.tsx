@@ -1,9 +1,11 @@
 import React from "react";
 
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+
+import { EditDayItem } from "@/components/edit/EditDayItem";
+import { Button } from "@/components/ui/button";
 
 import prisma from "@/lib/prisma";
-import { EditDayItem } from "@/components/edit/EditDayItem";
 
 interface PageProps {
   params: {
@@ -34,7 +36,10 @@ export default async function Page({ params }: PageProps) {
   const vocabularies = dayEntity.vocabularies;
   return (
     <div className="container mx-auto">
-      <h1>Gün {dayNumber} EDIT</h1>
+      <div className="flex justify-between">
+        <h1 className="mb-4 text-2xl">Gün {dayNumber} EDIT</h1>
+        <Button>Save</Button>
+      </div>
 
       <EditDayItem defaultVocabularies={vocabularies} />
     </div>
