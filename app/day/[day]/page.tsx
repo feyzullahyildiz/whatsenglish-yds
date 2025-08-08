@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 import prisma from "@/lib/prisma";
+
 import { GoEdit } from "../_components/GoEdit";
 
 interface PageProps {

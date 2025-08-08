@@ -17,7 +17,7 @@ export const VocabularyItem: FC<Props> = ({ vocabulary, index }) => {
       <CardContent className="flex w-full flex-col items-center gap-4">
         <div className="flex w-full items-center gap-4">
           <Badge
-            className="size-7 text-lg rounded-full px-1 font-mono tabular-nums"
+            className="size-7 rounded-full px-1 font-mono text-lg tabular-nums"
             variant="default"
           >
             {index + 1}
