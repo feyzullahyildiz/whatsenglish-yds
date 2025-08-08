@@ -10,17 +10,15 @@ export default async function Home() {
   const days = await prisma.day.findMany({});
 
   return (
-    <div className="mx-auto container grid grid-cols-7">
+    <div className="container mx-auto grid grid-cols-7">
       {days.map((day) => (
         <Link key={day.name} href={`/day/${day.name}`}>
-          <Card className="size-32 flex justify-center items-center m-2">
-            <CardContent className="flex    items-center flex-col">
+          <Card className="m-2 flex size-32 items-center justify-center">
+            <CardContent className="flex flex-col items-center">
               <div>Gün {day.name}</div>
 
               <span className="text-xs">{day.date}</span>
-              {day.completed && (
-                <CheckCheck />
-              )}
+              {day.completed && <CheckCheck />}
             </CardContent>
           </Card>
         </Link>

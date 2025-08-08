@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="mx-auto container">
+    <div className="container mx-auto">
       Page
       <h1>Yönetim Sayfası</h1>
       <Link href="/manage/create" className="">

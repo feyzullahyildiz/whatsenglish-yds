@@ -13,8 +13,8 @@ export default function Page() {
     createDay(value);
   };
   return (
-    <div className="mx-auto container">
-      <h1 className="text-2xl font-bold mb-4">Gün Oluştur</h1>
+    <div className="container mx-auto">
+      <h1 className="mb-4 text-2xl font-bold">Gün Oluştur</h1>
 
       <Input
         type="number"

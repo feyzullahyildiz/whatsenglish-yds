@@ -1,9 +1,9 @@
 import React from "react";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 import { Button } from "../ui/button";
-import Link from "next/link";
 
 export const SignOut = () => {
   const session = useSession();
@@ -12,7 +12,7 @@ export const SignOut = () => {
   }
   return (
     <div className="flex items-center gap-8">
-      <span className="text-white ml-4">
+      <span className="ml-4 text-white">
         {session.data?.user?.name
           ? `Hoşgeldin, ${session.data.user.name}`
           : "Welcome!"}

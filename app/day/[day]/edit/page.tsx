@@ -21,7 +21,7 @@ export default async function Page({ params }: PageProps) {
   });
 
   return (
-    <div className="mx-auto container">
+    <div className="container mx-auto">
       <h1>Gün {dayNumber}</h1>
       Page
     </div>

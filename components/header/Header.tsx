@@ -3,10 +3,10 @@
 import React from "react";
 
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 import { SignIn } from "./SignIn";
 import { SignOut } from "./SignOut";
-import Link from "next/link";
 
 export const Header = () => {
   const session = useSession();
