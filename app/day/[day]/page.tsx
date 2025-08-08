@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 import prisma from "@/lib/prisma";
+import { GoEdit } from "../_components/GoEdit";
 
 interface PageProps {
   params: {
@@ -29,9 +30,7 @@ export default async function Page({ params }: PageProps) {
     <div className="container mx-auto">
       <div className="flex justify-between">
         <h1>Gün {dayNumber} </h1>
-        <Link href={`/day/${dayNumber}/edit`}>
-          <Button>Edit</Button>
-        </Link>
+        <GoEdit dayNumber={dayNumber} />
       </div>
     </div>
   );

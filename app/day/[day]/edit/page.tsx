@@ -1,8 +1,9 @@
 import React from "react";
 
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import prisma from "@/lib/prisma";
+import { EditDayItem } from "@/components/edit/EditDayItem";
 
 interface PageProps {
   params: {
@@ -10,20 +11,32 @@ interface PageProps {
   };
 }
 export default async function Page({ params }: PageProps) {
-  const dayNumber = parseInt(params.day, 10);
+  const { day } = await params;
+  const dayNumber = parseInt(day, 10);
   if (isNaN(dayNumber)) {
-    return redirect("/");
+    return notFound();
   }
   const dayEntity = await prisma.day.findFirst({
     where: {
       name: dayNumber,
     },
+    include: {
+      vocabularies: {
+        orderBy: {
+          createdAt: "asc",
+        },
+      },
+    },
   });
-
+  if (!dayEntity) {
+    return notFound();
+  }
+  const vocabularies = dayEntity.vocabularies;
   return (
     <div className="container mx-auto">
-      <h1>Gün {dayNumber}</h1>
-      Page
+      <h1>Gün {dayNumber} EDIT</h1>
+
+      <EditDayItem defaultVocabularies={vocabularies} />
     </div>
   );
 }
