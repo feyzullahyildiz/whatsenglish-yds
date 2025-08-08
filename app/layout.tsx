@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-import { Header } from "@/components/Header";
+import { Header } from "@/components/header/Header";
+import { NextAuthSessionProvider } from "@/components/SessionProvider";
 
 import "./globals.css";
 
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={"bg-stone-800 text-white flex flex-col"}>
-        <Header />
-        <div className="p-4 flex flex-col">{children}</div>
+        <NextAuthSessionProvider>
+          <Header />
+          <div className="p-4 flex flex-col">{children}</div>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
