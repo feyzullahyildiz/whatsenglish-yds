@@ -9,6 +9,7 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async signIn({ account, profile }: any) {
       if (account?.provider === "google") {
         return (

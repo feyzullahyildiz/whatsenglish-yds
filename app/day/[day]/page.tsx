@@ -1,9 +1,6 @@
 import React from "react";
 
-import Link from "next/link";
 import { notFound } from "next/navigation";
-
-import { Button } from "@/components/ui/button";
 
 import prisma from "@/lib/prisma";
 
@@ -15,8 +12,8 @@ interface PageProps {
   };
 }
 export default async function Page({ params }: PageProps) {
-  const dayValue = await params.day;
-  const dayNumber = parseInt(dayValue, 10);
+  const { day } = await params;
+  const dayNumber = parseInt(day, 10);
 
   const dayEntity = await prisma.day.findFirst({
     where: {

@@ -3,8 +3,6 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 import { EditDayItem } from "@/components/edit/EditDayItem";
-import { NulishVocabulary } from "@/components/edit/atomVocabularities";
-import { Button } from "@/components/ui/button";
 
 import prisma from "@/lib/prisma";
 
