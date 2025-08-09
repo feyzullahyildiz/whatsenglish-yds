@@ -3,6 +3,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 import { EditDayItem } from "@/components/edit/EditDayItem";
+import { NulishVocabulary } from "@/components/edit/atomVocabularities";
 import { Button } from "@/components/ui/button";
 
 import prisma from "@/lib/prisma";
@@ -34,14 +35,10 @@ export default async function Page({ params }: PageProps) {
     return notFound();
   }
   const vocabularies = dayEntity.vocabularies;
+
   return (
     <div className="container mx-auto">
-      <div className="flex justify-between">
-        <h1 className="mb-4 text-2xl">Gün {dayNumber} EDIT</h1>
-        <Button>Save</Button>
-      </div>
-
-      <EditDayItem defaultVocabularies={vocabularies} />
+      <EditDayItem dayNumber={dayNumber} defaultVocabularies={vocabularies} />
     </div>
   );
 }

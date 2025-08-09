@@ -1,21 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import { useRunOnce } from "@/hooks/useRunOnce";
 
-import { Vocabulary } from "@/lib/generated/prisma";
-
 import { Button } from "../ui/button";
 import { VocabularyItem } from "./VocabularyItem";
+import { NulishVocabulary, useAtomVocabularies } from "./atomVocabularities";
 
-type NulishVocabulary = Vocabulary | undefined;
 interface Props {
-  defaultVocabularies: Vocabulary[];
+  dayNumber: number;
+  defaultVocabularies: NulishVocabulary[];
 }
-export const EditDayItem: React.FC<Props> = ({ defaultVocabularies }) => {
-  const [vocabularies, setVocabularies] =
-    useState<NulishVocabulary[]>(defaultVocabularies);
+export const EditDayItem: React.FC<Props> = ({
+  dayNumber,
+  defaultVocabularies,
+}) => {
+  const [vocabularies, setVocabularies] = useAtomVocabularies();
   useRunOnce({
     fn: () => {
       const len = defaultVocabularies.length;
@@ -29,11 +30,19 @@ export const EditDayItem: React.FC<Props> = ({ defaultVocabularies }) => {
   const onAddClick = () => {
     setVocabularies((prev) => [...prev, undefined]);
   };
+  const onSave = (vocabs: NulishVocabulary[]) => {
+    // "use server";
+    // console.log(vocabs);
+  };
   return (
     <div>
+      <div className="flex justify-between">
+        <h1 className="mb-4 text-2xl">Gün {dayNumber} EDIT</h1>
+        <Button onClick={() => onSave(vocabularies)}>Save</Button>
+      </div>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:gap-x-16">
-        {vocabularies.map((vocabulary, index) => (
-          <VocabularyItem index={index} key={index} vocabulary={vocabulary} />
+        {vocabularies.map((_, index) => (
+          <VocabularyItem index={index} key={index} />
         ))}
       </div>
       <div className="flex justify-end">

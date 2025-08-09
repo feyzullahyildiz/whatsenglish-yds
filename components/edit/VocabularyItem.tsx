@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 
 import { Vocabulary } from "@/lib/generated/prisma";
 
@@ -6,12 +6,26 @@ import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import { NulishVocabulary, useAtomVocabularies } from "./atomVocabularities";
 
 interface Props {
-  vocabulary?: Vocabulary;
   index: number;
 }
-export const VocabularyItem: FC<Props> = ({ vocabulary, index }) => {
+export const VocabularyItem: FC<Props> = ({ index }) => {
+  const [vocabularies, setVocabularies] = useAtomVocabularies();
+  const onWordChange = useCallback(
+    (word: string) => {
+      setVocabularies((prev) => {
+        const newVocabularies = [...prev];
+        if (!newVocabularies[index]) {
+          newVocabularies[index] = { word: "", definition: "" };
+        }
+        newVocabularies[index] = { ...newVocabularies[index], word };
+        return newVocabularies;
+      });
+    },
+    [index],
+  );
   return (
     <Card className="flex items-center gap-4">
       <CardContent className="flex w-full flex-col items-center gap-4">
@@ -25,7 +39,8 @@ export const VocabularyItem: FC<Props> = ({ vocabulary, index }) => {
           <Input
             className="flex-1"
             placeholder="Vocabulary"
-            value={vocabulary?.word}
+            value={vocabularies[index]?.word}
+            onChange={(e) => onWordChange(e.target.value)}
           />
         </div>
         <Textarea placeholder="Turkish meaning"></Textarea>
