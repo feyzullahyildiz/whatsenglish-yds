@@ -12,3 +12,4 @@ npm run dev
 ## Migration
 
 - `npx prisma migrate dev --name dictionaryapi`
+- `npm i`

@@ -12,7 +12,7 @@ interface Props {
 export const DictionaryApiRenderer: FC<Props> = ({ data }) => {
   if (!data) return null;
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       {data.map((item, index) => (
         <Item key={index} item={item} />
       ))}
@@ -29,13 +29,13 @@ function Item({ item }: { item: IDictionaryApiResponse[0] }) {
     }
   };
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       {item.phonetics
         .filter((p) => p.audio)
         .map((p, i) => (
-          <div className="flex items-center justify-between gap-8" key={i}>
+          <div className="flex items-center justify-between gap-4" key={i}>
             <span>{p.text}</span>
-            <Button size="lg" onClick={() => onPlay(i)}>
+            <Button variant="outline" size="lg" onClick={() => onPlay(i)}>
               PLAY
             </Button>
             <audio

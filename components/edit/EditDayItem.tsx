@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 import { saveDay } from "@/actions/saveDay";
 import { useRunOnce } from "@/hooks/useRunOnce";
@@ -17,13 +17,16 @@ export const EditDayItem: React.FC<Props> = ({
   dayNumber,
   defaultVocabularies,
 }) => {
+  const [loading, setLoading] = useState(false);
   const [vocabularies, setVocabularies] = useAtomVocabularies();
   useRunOnce({
     fn: () => {
       const len = defaultVocabularies.length;
-      if (len >= 30) return;
-      const extra = 30 - len;
-      const array = new Array(extra).fill(undefined);
+      if (len === 30) {
+        setVocabularies(defaultVocabularies);
+        return;
+      }
+      const array = new Array(30).fill(undefined);
       setVocabularies(() => [...defaultVocabularies, ...array]);
     },
   });
@@ -32,13 +35,21 @@ export const EditDayItem: React.FC<Props> = ({
     setVocabularies((prev) => [...prev, undefined]);
   };
   const onSave = async (vocabs: NulishVocabulary[]) => {
-    await saveDay(dayNumber, vocabs);
+    const filtered = vocabs.filter((v) => v !== undefined);
+    setLoading(true);
+    await saveDay(dayNumber, filtered);
+    setLoading(false);
   };
   return (
     <div>
       <div className="flex justify-between">
         <h1 className="mb-4 text-2xl">Day {dayNumber} EDIT</h1>
-        <Button onClick={() => onSave(vocabularies)}>Save</Button>
+        <div>
+          {loading && "loading"}
+          <Button disabled={loading} onClick={() => onSave(vocabularies)}>
+            Save
+          </Button>
+        </div>
       </div>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:gap-x-16">
         {vocabularies.map((_, index) => (

@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import prisma from "@/lib/prisma";
 
 export default async function Home() {
-  const days = await prisma.day.findMany({});
+  const days = await prisma.day.findMany({ orderBy: { name: "asc" } });
 
   return (
     <div className="container mx-auto grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-4 lg:grid-cols-7">

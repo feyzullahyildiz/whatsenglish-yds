@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { EditDayItem } from "@/components/edit/EditDayItem";
 
-import prisma from "@/lib/prisma";
+import { findDayWithVocabularies } from "@/lib/findDayWithVocabularies";
 
 interface PageProps {
   params: {
@@ -17,18 +17,7 @@ export default async function Page({ params }: PageProps) {
   if (isNaN(dayNumber)) {
     return notFound();
   }
-  const dayEntity = await prisma.day.findFirst({
-    where: {
-      name: dayNumber,
-    },
-    include: {
-      vocabularies: {
-        orderBy: {
-          createdAt: "asc",
-        },
-      },
-    },
-  });
+  const dayEntity = await findDayWithVocabularies(dayNumber);
   if (!dayEntity) {
     return notFound();
   }
