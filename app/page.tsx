@@ -6,6 +6,9 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import prisma from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60; // 1 dakika
+
 export default async function Home() {
   const days = await prisma.day.findMany({ orderBy: { name: "asc" } });
 
@@ -15,10 +18,10 @@ export default async function Home() {
         <Link key={day.name} href={`/day/${day.name}`}>
           <Card className="flex h-32 min-w-32 items-center justify-center">
             <CardContent className="flex flex-col items-center">
-              <div>Gün {day.name}</div>
+              <div>Day {day.name}</div>
 
               <span className="text-xs">{day.date}</span>
-              {day.completed && <CheckCheck />}
+              {day.completed && <CheckCheck color="green" />}
             </CardContent>
           </Card>
         </Link>

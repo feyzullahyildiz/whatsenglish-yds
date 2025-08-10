@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <nav className="bg-sidebar-accent z-10">
       <div className="container mx-auto flex h-16 items-center justify-between py-4">
-        <Link href="/">Ana Sayfa</Link>
+        <Link href="/">Main Page</Link>
         {session.status === "unauthenticated" ? (
           <SignIn />
         ) : (

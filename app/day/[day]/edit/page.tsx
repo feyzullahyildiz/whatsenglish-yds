@@ -11,6 +11,8 @@ interface PageProps {
     day: string;
   }>;
 }
+export const dynamic = "force-dynamic";
+export const revalidate = 60; // 1 dakika
 export default async function Page({ params }: PageProps) {
   const { day } = await params;
   const dayNumber = parseInt(day, 10);
