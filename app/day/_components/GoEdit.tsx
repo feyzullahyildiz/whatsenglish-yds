@@ -15,7 +15,7 @@ export const GoEdit = ({ dayNumber }: { dayNumber: number }) => {
   }
   return (
     <Link href={`/day/${dayNumber}/edit`}>
-      <Button>Edit</Button>
+      <Button size="sm">Edit</Button>
     </Link>
   );
 };

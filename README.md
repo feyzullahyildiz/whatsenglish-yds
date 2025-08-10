@@ -1,4 +1,3 @@
-
 ## Getting Started
 
 First, run the development server:
@@ -11,4 +10,5 @@ npm run dev
 ```
 
 ## Migration
+
 - `npx prisma migrate dev --name dictionaryapi`

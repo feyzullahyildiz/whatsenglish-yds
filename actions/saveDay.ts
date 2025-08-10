@@ -26,9 +26,9 @@ export const saveDay = async (
     .map(async (v) => {
       if (!v) return null;
       const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${v.word}`;
-      const result = await fetch(url, { cache: "no-cache" }).then((r) =>
-        r.json(),
-      );
+      const rawResult = await fetch(url, { cache: "no-cache" });
+      if (!rawResult.ok) return null;
+      const result = await rawResult.json();
       return result;
     });
   const dictionaryapiRes = await Promise.all(dictionaryapiPromises);
