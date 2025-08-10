@@ -17,9 +17,9 @@ import { findDayWithVocabularies } from "@/lib/findDayWithVocabularies";
 import { GoEdit } from "../_components/GoEdit";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     day: string;
-  };
+  }>;
 }
 export default async function Page({ params }: PageProps) {
   const { day } = await params;
@@ -37,7 +37,7 @@ export default async function Page({ params }: PageProps) {
         <GoEdit dayNumber={dayNumber} />
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {dayEntity.vocabularies.map((v, index) => (
+        {dayEntity.vocabularies.map((v) => (
           <Card key={v.id} className="flex flex-col">
             <CardHeader>
               <div className="flex justify-between">

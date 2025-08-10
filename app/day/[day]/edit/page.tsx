@@ -7,9 +7,9 @@ import { EditDayItem } from "@/components/edit/EditDayItem";
 import { findDayWithVocabularies } from "@/lib/findDayWithVocabularies";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     day: string;
-  };
+  }>;
 }
 export default async function Page({ params }: PageProps) {
   const { day } = await params;

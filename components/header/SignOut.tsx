@@ -1,6 +1,6 @@
 import React from "react";
 
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 import { Button } from "../ui/button";
