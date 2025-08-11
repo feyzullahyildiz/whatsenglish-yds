@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface Props {
@@ -11,9 +12,11 @@ export const TranslateLink = ({ name, link, icon }: Props) => {
   return (
     <Tooltip>
       <TooltipTrigger>
-        <a href={link} target="_blank" rel="noopener noreferrer">
-          {icon}
-        </a>
+        <Button asChild size="icon" variant="outline">
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {icon}
+          </a>
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>{name}</p>

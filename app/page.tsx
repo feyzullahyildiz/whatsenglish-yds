@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { CheckCheck, Check } from "lucide-react";
+import { Check, CheckCheck } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 
