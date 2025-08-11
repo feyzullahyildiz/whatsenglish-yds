@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import { findDayWithVocabularies } from "@/lib/findDayWithVocabularies";
+import { cn } from "@/lib/utils";
 
 import { GoEdit } from "../_components/GoEdit";
 
@@ -39,13 +40,13 @@ export default async function Page({ params }: PageProps) {
         <h1 className="text-2xl">Day {dayNumber}</h1>
         <GoEdit dayNumber={dayNumber} />
       </div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {dayEntity.vocabularies.map((v) => (
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        {dayEntity.vocabularies.map((v, index) => (
           <Card key={v.id} className="flex flex-col">
             <CardHeader>
-              <div className="flex justify-between">
-                <div className="flex items-end gap-4">
-                  <h3 className="text-3xl underline underline-offset-4">
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
+                <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                  <h3 className="text-lg underline underline-offset-4 md:text-3xl">
                     {v.word}
                   </h3>
                   <span>
@@ -78,7 +79,14 @@ export default async function Page({ params }: PageProps) {
               </div>
             </CardHeader>
             <CardContent className="flex flex-1 flex-col gap-2">
-              <div className="whitespace-break-spaces">{v.definition}</div>
+              <div
+                className={cn(
+                  "text-primary whitespace-break-spaces",
+                  "bg-secondary px-4 py-2 rounded-lg",
+                )}
+              >
+                {v.definition}
+              </div>
               {v.dictionaryapiResponse && (
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 <DictionaryApiRenderer data={v.dictionaryapiResponse as any} />

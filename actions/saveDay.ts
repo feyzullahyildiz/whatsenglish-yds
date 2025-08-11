@@ -36,6 +36,7 @@ export const saveDay = async (
           definition: next.definition.trim(),
           dictionaryapiResponse: dictionaryapiRes.dictionaryapiResponse,
           dictionaryapiVocabulary: dictionaryapiRes.dictionaryapiVocabulary,
+          index: i + 1,
         },
       });
     }
@@ -61,6 +62,7 @@ export const saveDay = async (
       word: v!.word,
       dictionaryapiResponse: dictionaryapiRes[index],
       dictionaryapiVocabulary: v!.word,
+      index: index + 1,
     })),
   });
 };
