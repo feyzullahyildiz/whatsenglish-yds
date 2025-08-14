@@ -1,5 +1,7 @@
 "use server";
 
+import { getServerSession } from "next-auth";
+
 import { SimpleVocabulary } from "@/components/edit/atomVocabularities";
 
 import { findDayWithVocabularies } from "@/lib/findDayWithVocabularies";
@@ -14,6 +16,11 @@ export const saveDay = async (
   name: number,
   nextVocabularies: SimpleVocabulary[],
 ) => {
+  const session = await getServerSession();
+  if (!session) {
+    throw new Error("Not authenticated");
+  }
+
   const day = await findDayWithVocabularies(name);
   if (!day) {
     throw new Error("Day not found");

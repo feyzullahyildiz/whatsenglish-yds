@@ -35,10 +35,15 @@ export const EditDayItem: React.FC<Props> = ({
     setVocabularies((prev) => [...prev, undefined]);
   };
   const onSave = async (vocabs: NulishVocabulary[]) => {
-    const filtered = vocabs.filter((v) => v !== undefined);
-    setLoading(true);
-    await saveDay(dayNumber, filtered);
-    setLoading(false);
+    try {
+      const filtered = vocabs.filter((v) => v !== undefined);
+      setLoading(true);
+      await saveDay(dayNumber, filtered);
+    } catch (error) {
+      console.log("Error saving day:", error);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div>
