@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={"dark flex flex-col"}>
+      <body className={"dark flex min-h-screen flex-col"}>
         <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
         <Toaster position="top-right" />
       </body>

@@ -16,8 +16,13 @@ import { StudyItem } from "./StudyItem";
 interface Props {
   vocabularies: Vocabulary[];
   otherOptions: string[];
+  wrongAnswerCount: number;
 }
-export const StudySwiper: FC<Props> = ({ vocabularies, otherOptions }) => {
+export const StudySwiper: FC<Props> = ({
+  vocabularies,
+  otherOptions,
+  wrongAnswerCount,
+}) => {
   const [progress, setProgress] = useState(0);
   const value = (progress / (vocabularies.length + 1)) * 100;
   return (
@@ -39,7 +44,11 @@ export const StudySwiper: FC<Props> = ({ vocabularies, otherOptions }) => {
         >
           {vocabularies.map((v) => (
             <SwiperSlide key={v.id} className="relative">
-              <StudyItem vocabulary={v} otherOptions={otherOptions} />
+              <StudyItem
+                vocabulary={v}
+                otherOptions={otherOptions}
+                wrongAnswerCount={wrongAnswerCount}
+              />
             </SwiperSlide>
           ))}
           <SwiperSlide className="flex items-center justify-center bg-gray-800 p-2 text-2xl text-white">

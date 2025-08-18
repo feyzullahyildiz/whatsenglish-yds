@@ -11,11 +11,14 @@ import { Day } from "@/lib/generated/prisma";
 import { cn } from "@/lib/utils";
 
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 interface Props {
   days: Day[];
 }
 export const StudyDaySelect: FC<Props> = ({ days }) => {
+  const [wrongAnswerCount, setWrongAnswerCount] = useState(3);
   const [selectedDays, setSelectedDays] = useState<Array<number>>([]);
   const router = useRouter();
 
@@ -23,17 +26,11 @@ export const StudyDaySelect: FC<Props> = ({ days }) => {
     if (selectedDays.length === 0) {
       return;
     }
-    const url = `/study/${selectedDays.join("/")}`;
+    const url = `/study/${wrongAnswerCount}/${selectedDays.join("/")}`;
     router.push(url);
   };
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <h1>Select study days and click Start Button</h1>
-        <Button onClick={onClickStart} disabled={selectedDays.length === 0}>
-          Start
-        </Button>
-      </div>
+    <div className="flex flex-1 flex-col gap-4">
       <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-4 lg:grid-cols-7">
         {days.map((day) => (
           <Toggle
@@ -65,6 +62,22 @@ export const StudyDaySelect: FC<Props> = ({ days }) => {
             </Card>
           </Toggle>
         ))}
+      </div>
+      <div className="flex-1"></div>
+      <div className="flex flex-col gap-4">
+        <h1>Select study days and click Start Button</h1>
+        <Label htmlFor="optionCount">Wrong answer count in a question</Label>
+        <Input
+          id="optionCount"
+          type="number"
+          value={wrongAnswerCount}
+          onChange={(e) => setWrongAnswerCount(Number(e.target.value))}
+          min={1}
+          max={10}
+        />
+        <Button onClick={onClickStart} disabled={selectedDays.length === 0}>
+          Start
+        </Button>
       </div>
     </div>
   );

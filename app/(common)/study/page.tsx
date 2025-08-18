@@ -14,7 +14,7 @@ export default async function Page() {
     },
   });
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto flex flex-1 flex-col">
       <StudyDaySelect days={days} />
     </div>
   );

@@ -18,15 +18,24 @@ const StudyItemOptions = dynamic(
 interface Props {
   vocabulary: Vocabulary;
   otherOptions: string[];
+  wrongAnswerCount: number;
 }
-export const StudyItem: FC<Props> = ({ vocabulary: v, otherOptions }) => {
+export const StudyItem: FC<Props> = ({
+  vocabulary: v,
+  otherOptions,
+  wrongAnswerCount,
+}) => {
   return (
     <Card className="flex h-full text-white">
       <CardHeader className="text-3xl">{v.word}</CardHeader>
       <div className="flex-1"></div>
       <CardContent>
         <div className="flex flex-col gap-2">
-          <StudyItemOptions answer={v.definition} otherOptions={otherOptions} />
+          <StudyItemOptions
+            wrongAnswerCount={wrongAnswerCount}
+            answer={v.definition}
+            otherOptions={otherOptions}
+          />
         </div>
       </CardContent>
     </Card>

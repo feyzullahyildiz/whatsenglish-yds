@@ -8,7 +8,7 @@ export default function Layout({
   return (
     <>
       <Header />
-      <div className="flex flex-col p-4">{children}</div>
+      <div className="flex flex-1 flex-col p-4">{children}</div>
     </>
   );
 }
