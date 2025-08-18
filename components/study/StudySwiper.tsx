@@ -11,6 +11,7 @@ import { Progress } from "@/components/ui/progress";
 
 import { Vocabulary } from "@/lib/generated/prisma";
 
+import { Button } from "../ui/button";
 import { StudyItem } from "./StudyItem";
 
 interface Props {
@@ -23,7 +24,7 @@ export const StudySwiper: FC<Props> = ({
   otherOptions,
   wrongAnswerCount,
 }) => {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(1);
   const value = (progress / (vocabularies.length + 1)) * 100;
   return (
     <>
@@ -39,7 +40,6 @@ export const StudySwiper: FC<Props> = ({
             console.log("slide change", i.realIndex);
             setProgress(i.realIndex + 1);
           }}
-          //   autoHeight={true}
           className="w-full flex-1"
         >
           {vocabularies.map((v) => (
@@ -54,6 +54,7 @@ export const StudySwiper: FC<Props> = ({
           <SwiperSlide className="flex items-center justify-center bg-gray-800 p-2 text-2xl text-white">
             <div className="flex h-full flex-col items-center justify-center gap-8">
               <div>🎉 Completed!</div>
+              <Button onClick={() => window.location.reload()}>Reset</Button>
               <Link className="underline" href="/">
                 Main Page
               </Link>

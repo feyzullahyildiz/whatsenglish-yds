@@ -40,13 +40,13 @@ export const StudyItemOptions: FC<Props> = memo(
               if (option.correct) {
                 toast.success("Correct answer!", {
                   richColors: true,
-                  duration: 2000,
+                  duration: 400,
                 });
                 setResolved(true);
               } else {
                 toast.error("Wrong answer!", {
                   richColors: true,
-                  duration: 2000,
+                  duration: 400,
                 });
               }
               setClickedIndexes((prev) => [...prev, index]);
