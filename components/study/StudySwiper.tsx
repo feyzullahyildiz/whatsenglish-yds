@@ -27,7 +27,7 @@ export const StudySwiper: FC<Props> = ({
   const value = (progress / (vocabularies.length + 1)) * 100;
   return (
     <>
-      <div className="flex h-screen flex-col gap-2 p-2">
+      <div className="flex h-full flex-col gap-2 p-2">
         <Progress value={value} max={100} />
 
         <Swiper
