@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { NextAuthSessionProvider } from "@/components/SessionProvider";
-import { Header } from "@/components/header/Header";
+import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
 
@@ -18,10 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={"dark flex flex-col"}>
-        <NextAuthSessionProvider>
-          <Header />
-          <div className="bg- flex flex-col p-4">{children}</div>
-        </NextAuthSessionProvider>
+        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        <Toaster  position="top-right" />
       </body>
     </html>
   );
