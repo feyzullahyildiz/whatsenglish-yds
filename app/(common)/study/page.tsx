@@ -4,6 +4,9 @@ import { StudyDaySelect } from "@/components/study/StudyDaySelect";
 
 import prisma from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60; // 1 dakika
+
 export default async function Page() {
   const days = await prisma.day.findMany({
     orderBy: { name: "asc" },
