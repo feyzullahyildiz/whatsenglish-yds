@@ -16,9 +16,14 @@ import { cn } from "@/lib/utils";
 interface Props {
   vocabulary: Vocabulary;
   onDetailsClick: (v: Vocabulary) => void;
+  onTranslateLinkClick?: (url: string) => void;
 }
 
-export const VocabularyItem: FC<Props> = ({ vocabulary, onDetailsClick }) => {
+export const VocabularyItem: FC<Props> = ({
+  vocabulary,
+  onDetailsClick,
+  onTranslateLinkClick,
+}) => {
   return (
     <Card key={vocabulary.id} className="flex flex-col">
       <CardHeader>
@@ -39,6 +44,7 @@ export const VocabularyItem: FC<Props> = ({ vocabulary, onDetailsClick }) => {
               name="DictionaryAPI"
               link={`https://api.dictionaryapi.dev/api/v2/entries/en/${vocabulary.word}`}
               icon={"API"}
+              onClick={onTranslateLinkClick}
             />
             <TranslateLink
               name="Cambridge Dictionary"

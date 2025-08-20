@@ -9,13 +9,7 @@ import { IDictionaryApiResponse } from "@/types/IDictionaryApiResponse";
 
 import { Vocabulary } from "@/lib/generated/prisma";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "./ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 
 export interface DictionaryApiDetailsRef {
   start: (data: Vocabulary) => void;
