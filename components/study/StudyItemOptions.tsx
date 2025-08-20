@@ -13,9 +13,10 @@ interface Props {
   answer: string;
   otherOptions: string[];
   wrongAnswerCount: number;
+  onSuccessClick: () => void;
 }
 export const StudyItemOptions: FC<Props> = memo(
-  ({ answer, otherOptions, wrongAnswerCount }) => {
+  ({ answer, otherOptions, wrongAnswerCount, onSuccessClick }) => {
     const [resolved, setResolved] = useState(false);
     const [clickedIndexes, setClickedIndexes] = useState<number[]>([]);
     const options = useMemo(() => {
@@ -43,6 +44,7 @@ export const StudyItemOptions: FC<Props> = memo(
                   duration: 400,
                 });
                 setResolved(true);
+                onSuccessClick();
               } else {
                 toast.error("Wrong answer!", {
                   richColors: true,

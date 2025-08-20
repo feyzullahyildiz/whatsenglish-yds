@@ -5,6 +5,8 @@ import { FC, useState } from "react";
 import Link from "next/link";
 
 import "swiper/css";
+import "swiper/css/scrollbar";
+import { Mousewheel, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Progress } from "@/components/ui/progress";
@@ -35,9 +37,10 @@ export const StudySwiper: FC<Props> = ({
           direction="vertical"
           slidesPerView={1}
           spaceBetween={0}
-          // onSwiper={(swiper) => console.log(swiper)}
+          modules={[Scrollbar, Mousewheel]}
+          scrollbar={{ draggable: true }}
+          mousewheel={true}
           onSlideChange={(i) => {
-            console.log("slide change", i.realIndex);
             setProgress(i.realIndex + 1);
           }}
           className="w-full flex-1"

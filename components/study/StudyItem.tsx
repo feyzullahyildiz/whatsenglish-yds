@@ -4,6 +4,8 @@ import React, { FC } from "react";
 
 import dynamic from "next/dynamic";
 
+import { useSwiper } from "swiper/react";
+
 import { Vocabulary } from "@/lib/generated/prisma";
 
 import { Card, CardContent, CardHeader } from "../ui/card";
@@ -25,6 +27,12 @@ export const StudyItem: FC<Props> = ({
   otherOptions,
   wrongAnswerCount,
 }) => {
+  const swiper = useSwiper();
+  const goNext = () => {
+    setTimeout(() => {
+      swiper?.slideNext();
+    }, 300);
+  };
   return (
     <Card className="flex h-full text-white">
       <CardHeader className="text-3xl">{v.word}</CardHeader>
@@ -35,6 +43,7 @@ export const StudyItem: FC<Props> = ({
             wrongAnswerCount={wrongAnswerCount}
             answer={v.definition}
             otherOptions={otherOptions}
+            onSuccessClick={goNext}
           />
         </div>
       </CardContent>
